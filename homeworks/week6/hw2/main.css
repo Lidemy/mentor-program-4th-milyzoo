@@ -1,0 +1,190 @@
+/*
+----------------------------------------
+ reset css & 全域設定
+----------------------------------------
+*/
+* {
+    margin: 0; 
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Microsoft JhengHei';   
+    background-color: #f0f0f0;    
+}
+/*
+----------------------------------------
+ 所有 css 設定
+----------------------------------------
+*/
+.container {
+    position: relative;
+    margin: 130px auto 120px;
+    max-width: 645px;
+}
+@media (max-width: 568px) {
+    .container{
+        margin: 50px auto 40px;
+        width: 90%;
+    }
+}
+
+form{
+    padding: 40px;
+    background-color: #fff;
+    box-shadow: 2.5px 2.5px 10px 0 rgba(0, 0, 0, 0.10);
+    border-radius: 0 0 8px 8px;
+}
+form::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    border-top: 10px solid #fad312;
+    border-radius: 5px 5px 0 0;
+}
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+.description {
+    font-size: 14px;
+}
+.info {
+    margin: 35px 0 55px;
+}
+.info p:first-child {
+    margin-bottom: 10px;
+}
+.info .required {
+    font-size: 16px;
+    color: #e74149;
+    margin-top: 20px;
+}
+.info .required::before,
+.required label::after,
+.form__radio p::after {
+    content: "*";
+    margin: 0 5px;
+    color: #e74149;
+}
+form li {
+    display: flex;
+    flex-direction: column;
+}
+form li:not(:last-child) {
+    margin-bottom: 45px;
+}
+form label,
+.form__radio p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.multiline .description {
+    margin: 10px 0 20px 0;
+}
+.submit input {
+    width: 90px;
+    margin-bottom: 20px;
+    background-color: #fad312;
+    border: 0;
+    padding: 10px 0;
+    border-radius: 3px;
+    font-size: 15px;
+    font-family: 'Microsoft JhengHei';
+    outline-style: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.submit input:hover {
+    background-color: rgba(250, 211, 18, 0.75);
+}
+.submit input:focus {
+    border: none;
+}
+footer {
+    background-color: #000000;
+    color: #999999;
+    line-height: 60px;
+    text-align: center;
+    font-size: 13px;
+}
+/*
+----------------------------------------
+ 點擊 input 後的底線動畫
+----------------------------------------
+*/
+.form__text-active {
+    position: relative;
+    max-width: 285px;
+}
+.form__text-active input {
+    padding: 3px;
+    outline-style: none;
+    border: none;
+    font-size: 16px;
+    transition: all 0.5s;
+    border-bottom: 1px solid #d0d0d0;
+}
+.form__text-underline {
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    width: 0%;
+    border-bottom: 2px solid #fad312;
+    transition: all 0.3s;
+}
+.form__text-active input:focus + .form__text-underline {
+    left: 0%;
+    width: 100%;
+}
+form input::placeholder {
+    color: #afafaf;
+    font-size: 16px;
+    transition: all 0.5s;
+}
+form input:focus::placeholder {
+    opacity: 0.35;
+}
+/*
+----------------------------------------
+ radio 樣式
+----------------------------------------
+*/
+.form__radio div:last-child {
+    margin-top: 20px;
+}
+.form__radio input {
+    width: auto;
+    opacity: 0;
+}
+.form__radio label {
+    font-size: 14px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.form__radio input + label {
+    position: relative;
+}
+.form__radio input + label:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    border: 1px solid #fad312;
+    border-radius: 50%;
+    margin-left: -15px;
+}
+.form__radio input:checked + label:before {
+    box-shadow: 2px 2px 0 #fff inset,
+     -2px -2px 0 #fff inset,
+      -2px 2px 0 #fff inset,
+       2px -2px 0 #fff inset,
+       .3rem  .3rem 0 #fad312 inset,
+       -.5rem -.5rem 0 #fad312 inset; 
+}
