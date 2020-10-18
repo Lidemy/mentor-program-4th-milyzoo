@@ -1,0 +1,332 @@
+/* 
+-----------------------------------
+ CSS reset & 全域設定
+-----------------------------------
+*/
+body {
+    margin: 0;
+    background-color: #F8F4F1;
+    font-family: "Roboto", "Microsoft JhengHei", Arial;
+}
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* 
+-----------------------------------
+ main
+-----------------------------------
+*/
+.container {
+    margin: 140px auto 50px auto;
+    width: 100%;
+    max-width: 550px;
+}
+.todolist {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 45px 0 25px 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 15px 50px rgba(164, 134, 117, 0.1);
+}
+.todolist::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: calc(100% + 10px);
+    height: 5px;
+    background-color: #A48675;
+    border-radius: 5px;
+    border-bottom: 3px solid #DBD7D5;
+}
+.decor__koala {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    transform: translateY(-76%);
+    width: 100%;
+    max-width: 100px;
+    height: 60px;
+    background: url("images/decor_koala.svg") no-repeat center;
+}
+.decor__leaf {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transform: translateY(-90%);
+    width: 100%;
+    max-width: 20px;
+    height: 25px;
+    background: url("images/decor_leaf.svg") no-repeat center;
+}
+h1 {
+    position: absolute;
+    top: -45px;
+    left: 20%;
+    color: #b8b2ae;
+    font-size: 28px;
+    font-weight: 100;
+}
+.write {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 8%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.write__input {
+    margin-right: 15px;
+    padding: 5px 10px;
+    width: calc(100% - 70px);
+    border: none;
+    border-bottom: 1px solid #DBD7D5;
+    outline: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+.note_empty-show .write__input::placeholder {
+    color: #de4e3e;
+    opacity: 0.4;
+}
+.write__input::placeholder {
+    font-family: "Roboto", Arial; /* ::placeholder 沒作用所以再寫一次 */
+    font-weight: 300;
+    color: #DBD7D5;
+    transition: 0.3s;
+}
+.write__input:focus {
+    border-bottom: 1px solid #b8b2ae;
+}
+.write__input:focus::placeholder {
+    color: transparent;
+}
+.note_empty-show .write__input {
+    border-bottom: 1px solid #de4e3e;
+}
+.write__add-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #F9C440 url("images/icon_add.svg") no-repeat center;
+    background-size: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.write__add-btn:hover {
+    background-color: #f9b815;
+    box-shadow: 0 0 20px rgba(249, 196, 64, 0.4);
+    animation: bouncing 1.5s infinite;
+}
+.note_empty {
+    position: absolute;
+    bottom: -30px;
+    left: 8%;
+    padding: 5px 15px;
+    width: auto;
+    color: #F8F4F1;
+    background-color: #de4e3e;
+    border-radius: 30px;
+    transition: 0.3s;
+    font-size: 15px;
+    opacity: 0;
+}
+.note_empty::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 10%;
+    border: 6px solid;
+    border-color: transparent  transparent #de4e3e transparent;
+}
+.note_empty-show .note_empty {
+    opacity: 1;
+}
+.list {
+    width: 100%;
+}
+.list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.list__item:hover {
+    background-color: #F8F4F1;
+}
+.done .list__tittle {
+    color: #DBD7D5;
+}
+.list__tittle {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 70px);
+    color: #555555;
+    transition: 0.5s;
+}
+.list__tittle p {
+    width: calc(100% - 45px);
+    animation: strikethrough-remove 0.8s 1;
+    word-break: break-all; /* 單字太長就強制換行 */
+}
+.done .list__tittle p {
+    font-style: italic;
+    text-decoration: line-through;
+    animation: strikethrough 0.8s 1;
+}
+.list__check {
+    position: relative;
+    margin-right: 30px;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    box-sizing: border-box;
+    border: 2px solid #DBD7D5;
+    border-radius: 50%;
+    outline: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.done .list__check {
+    border: 2px solid transparent;
+}
+.list__check::before,
+.list__check::after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    border-radius: 5px;
+    background: #858585;
+    opacity: 0;
+    transition: 0.3s;
+}
+.done .list__check::before,
+.done .list__check::after {
+    opacity: 1;
+}
+.list__check::before {
+    bottom: 1px;
+    left: -4px;
+    transform: rotate(45deg);
+    width: 8px;
+}
+.list__check::after {
+    bottom: 3.5px;
+    left: -0.5px;
+    transform: rotate(-45deg);
+    width: 15px;
+}
+.list__delete {
+    position: relative;
+    margin-left: 50px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: url("images/icon_delete.svg") no-repeat center;
+    outline: none;
+    color: transparent;
+    cursor: pointer;
+    opacity: 0;
+    animation: bouncing 1.5s infinite;
+    transition: 0.3s;
+}
+.list__item:hover .list__delete,
+.list__delete:hover .note_delete {
+    opacity: 1;
+}
+.note_delete {
+    position: absolute;
+    top: -33px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    width: auto;
+    color: #F8F4F1;
+    background-color: #A48675;
+    border-radius: 30px;
+    opacity: 0;
+    transition: 0.3s;
+}
+.note_delete::after {
+    content: "";
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid;
+    border-color: #A48675 transparent transparent transparent;
+}
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    .list__delete {
+        opacity: 1;
+        animation: none;
+    }
+}
+@media (max-width: 568px) {
+    .decor__koala {
+        right: 1%;
+        max-width: 85px;
+        height: 50px;
+    }
+    h1 {
+        left: 15%;
+        top: -35px;
+        font-size: 24px;
+    }
+}
+@media (max-width: 320px) {
+    /* iphone5 */
+    .decor__leaf {
+        display: none;
+    }
+    h1 {
+        left: 5%;
+        font-size: 22px;
+    }
+}
+/* 
+-----------------------------------
+ animation
+-----------------------------------
+*/
+@keyframes bouncing {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes strikethrough {
+    from {
+        transform: translateX(5px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+@keyframes strikethrough-remove {
+    from {
+        transform: translateX(5px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
