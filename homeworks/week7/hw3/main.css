@@ -178,7 +178,7 @@ h1 {
 .list__tittle p {
     width: calc(100% - 45px);
     animation: strikethrough-remove 0.8s 1;
-    word-break: break-all; /* 單字太長就強制換行 */
+    overflow-wrap: break-word; /* 單字太長就強制換行 */
 }
 .done .list__tittle p {
     font-style: italic;
