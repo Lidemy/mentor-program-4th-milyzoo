@@ -1,0 +1,381 @@
+*, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    font-family: 'Noto Sans TC', 'Microsoft JhengHei', '微軟正黑', Arial;
+    background-color: #edf1f7;
+}
+input {
+    -webkit-appearance: none;  /* 用於 iOS 移除內建 input 樣式 */
+    -moz-appearance: none;     /* FireFox */
+    appearance: none;
+}
+.nav {
+    padding: 30px 0;
+}
+.nav__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+}
+.logo, .nav__item {
+    text-decoration: none;
+}
+.logo {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #653CFF;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+}
+.logo span {
+    margin-left: 5px;
+    font-size: 13px;
+}
+.nav__list {
+    display: flex;
+}
+.nav__item {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    height: 30px;
+    border: 1px solid #653CFF;
+    border-radius: 15px;
+    font-size: 15px;
+    color: #653CFF;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.nav__item:first-child {
+    margin-right: 10px;
+}
+.nav__item-icon {
+    margin-right: 5px;
+    width: 15px;
+    transition: 1s;
+}
+.main {
+    margin: 0 auto 30px auto;
+    width: 80%;
+    max-width: 700px;
+}
+.board {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 30px;
+    padding: 20px 20px 20px 30px;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.board::before {
+    position: absolute;
+    content: "";
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;
+    width: 20px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(images/note.svg);
+}
+.board__input-tittle {
+    color: #333333;
+    display: flex;
+    align-items: center;
+    /* flex-direction: column; */
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+.board__input-tittle span {
+    width: 45px;
+}
+.board__input-tittle input,
+.board__input-tittle textarea {
+    padding: 7px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 0;
+    color: #555555;
+    font-size: 15px;
+    outline: none;
+    resize: none;
+    transition: 0.3s;
+}
+.board__input-tittle input {
+    width: calc(100% - 20px);
+    border-radius: 3px;
+    background-color: #f0eff4;
+    border: 1px solid #f0eff4;
+}
+.board__input-tittle input:focus {
+    border: 1px solid rgba(102, 60, 255, 0.3);
+}
+.board__input-tittle textarea:focus {
+    background-color: #f0eff4;
+}
+.board__submit {
+    position: relative;
+    display: flex;
+    align-self: center;
+    padding: 8px 35px 8px 20px;
+    background-color: #653CFF;
+    color: #ffffff;
+    border: 0;
+    border-radius: 30px;
+    font-family: 'Microsoft JhengHei'; /* 全域設定無效，再打一次 */
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.board__submit:hover {
+    background-color: #5b34e6;
+    box-shadow: 0 0 10px rgba(102, 60, 255, 0.3);
+}
+.board__submit img {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 13px;
+    transition: 0.2s;
+}
+.board__submit:hover img {
+    right: 13px;
+}
+.board-guest {
+    position: relative;
+    height: 190px;
+    box-sizing: border-box;
+    color: #888888;
+    text-align: center;
+    font-size: 18px;
+    font-style: italic;
+    text-decoration: none;
+}
+.board-guest::after  {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #000000;
+    transition: 0.5s;
+    opacity: 0;
+}
+.board-guest:hover::after {
+    opacity: 0.7;
+}
+.board-guest__btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 30px;
+    background-color: #653CFF;
+    color: #ffffff;
+    text-decoration: none;
+    font-style: normal;
+    border-radius: 30px;
+    opacity: 0;
+    transition: 0.3s;
+}
+.board-guest:hover .board-guest__btn {
+    opacity: 1;
+    z-index: 1;
+}
+.board-guest__btn:hover {
+    background-color: #ffffff;
+    color: #653CFF;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 5%;
+    border-radius: 5px;
+    background-color: #ffffff;
+    overflow-wrap: break-word; /* 單字太長就強制換行 */
+    transition: 0.3s;
+}
+.card:nth-child(odd)::before,
+.card:nth-child(even)::before {
+    position: absolute;
+    content: "";
+    right: -6px;
+    top: 15px;
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url(images/bookmark.svg);
+}
+.card:nth-child(even)::before {
+    background-image: url(images/bookmark-2th.svg);
+}
+.card__info {
+    display: flex;
+    align-items: center;
+}
+.card__avatar {
+    margin-right: 15px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #e7e3f4;
+}
+.card__detail {
+    width: calc(100% - 50px);
+}
+.card__author {
+    max-width: 100%;
+    font-weight: bold;
+    color: #333333;
+}
+.card__time {
+    color: #aaa;
+    font-size: 13px;
+}
+.card__message {
+    color: #555555;
+    width: 100%;
+    margin: 15px 0;
+    white-space: pre-line;
+}
+@media (min-width: 768px) {
+    .nav__content {
+        flex-direction: row;
+    }
+    .logo:hover {
+        transform: translateX(-3px);
+        letter-spacing: 1px;
+    }
+    .nav__item:first-child {
+        margin-right: 20px;
+    }
+    .main {
+        margin: 40px auto 80px auto;
+    }
+    .nav__item:hover {
+        padding: 0 19px 0 1px;
+        border: 1px solid #653CFF;
+        background-color: #653CFF;
+        color: #e7e3f4;
+    }
+    .nav__item:hover .nav__item-icon{
+        transform: translateX(-200%);
+    }
+    .card:nth-child(odd)::before,
+    .card:nth-child(even)::before {
+        right: -7px;
+        top: 35px;
+        width: 30px;
+        height: 30px;
+    }
+}
+/*
+---------------------------------
+ 共用元件
+---------------------------------
+*/
+.error, .error-register {
+    position: absolute;
+    font-size: 16px;
+    font-weight: normal;
+    color: #cb0000;
+}
+.error {
+    bottom: 35px;
+}
+.error-register {
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    line-height: 30px;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 15px;
+    background-color: #ffdada;
+}
+.login-signup-toggle {
+    color: #888888;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+.login-signup-toggle:hover {
+    color: #653CFF;
+}
+/*
+---------------------------------
+ 註冊頁面
+---------------------------------
+*/
+.register {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    padding: 30px 40px;
+    max-width: 400px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(102, 60, 255, 0.05);
+}
+.register__tittle {
+    margin-bottom: 25px;
+    font-size: 20px;
+    text-align: center;
+}
+.warning {
+    margin: 30px auto 0 auto;
+    padding: 0 15px;
+    max-width: 400px;
+    box-sizing: border-box;
+    color: #cb0000;
+    font-size: 15px;
+}
+.register__btn {
+    margin: 20px auto 0 auto;
+    padding: 13px 0;
+    width: 100%;
+    background-color: #653CFF;
+    color: #ffffff;
+    border: 0;
+    border-radius: 3px;
+    font-family: 'Microsoft JhengHei'; /* 全域設定無效，再打一次 */
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.register__btn:hover {
+    background-color: #5b34e6;
+    box-shadow: 0 0 10px rgba(102, 60, 255, 0.3);
+}
+.register-done p {
+    color: #333333;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .register {
+        padding: 30px 60px;
+    }
+}
