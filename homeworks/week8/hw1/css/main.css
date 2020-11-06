@@ -1,0 +1,605 @@
+/*
+----------------------------------------
+ 手動 reset 設定 (normalize.css 沒 reset 到的)
+----------------------------------------
+*/
+.navbar,
+.comment__info,
+.footer__social-media,
+.lottery-box__info {
+    list-style: none;
+}
+h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+/*
+----------------------------------------
+ 共用到的 class 設定
+----------------------------------------
+*/
+body {
+    font-family: 'Questrial', 'Microsoft JhengHei', '微軟正黑', Arial;
+} 
+.container {
+    width: 85%;
+    max-width: 1730px;
+    margin: 0 auto;
+}
+.logo a {
+    text-decoration: none;
+    color: #489846;
+    font-size: 36px;
+    transition: 0.5s;
+}
+.logo:hover a {
+    color: rgba(71, 152, 70, 0.6);
+}
+.tittle {
+    display: inline-block;
+    position: relative;
+    margin: 0 0 40px 0px;
+    padding-left: 30px;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1;
+}
+.tittle::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 15px;
+    height: 100%;
+    background: #a3dea2;
+}
+.layout__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/*
+----------------------------------------
+ <header>
+----------------------------------------
+*/
+header {
+    display: flex;
+    background-color: #ffffff;
+    height: 84px;
+    box-shadow: -1.4px -1.4px 6px #97a2a0;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.navbar {
+    display: flex;
+    margin-right: -25px;
+}
+.navbar li + li {
+    margin-left: 10px;
+}
+.navbar a {
+    font-size: 18px;
+    color: #010101;
+    padding: 13px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background-color: #ff7286;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+/* ---------- 漢堡選單設定 ---------- */
+.mobile-menu {
+    position: relative;
+    width: 35px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1;
+}
+.mobile-menu__line,
+.mobile-menu::before,
+.mobile-menu::after {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #010101;
+    transition: 0.5s;
+}
+.mobile-menu__line {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.mobile-menu::before {
+    content: '';
+    top: 0;
+}
+.mobile-menu::after {
+    content: '';
+    bottom: 0;
+}
+/* 點擊漢堡選單後的 icon 動畫 */
+.open .mobile-menu__line {
+    display: none;
+}
+.open.mobile-menu::before,
+.open.mobile-menu::after  {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.open.mobile-menu::before {
+    transform: rotate(45deg);
+}
+.open.mobile-menu::after {
+    transform: rotate(-45deg);
+}
+@media (min-width: 769px) {
+    /* 在電腦版隱藏漢堡選單 */
+    .mobile-menu {
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    header {
+        position: relative;
+    }
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        background-color: #fff;
+        text-align: center;
+        z-index: 1;
+        transition: 0.5s;
+    }
+    .open.navbar {
+        height: 100vh;
+    }
+    .navbar li {
+        margin-top: 80px;
+    }
+    .navbar li + li {
+        margin: 30px 0 0 0;
+    }
+    .navbar a {
+        font-size: 22px;
+    }
+    .navbar a:hover {
+        background-color: transparent;
+        color: #489846;
+    }
+}
+@media (max-width: 568px) {
+}
+/* -------- 漢堡選單設定結束 -------- */
+/*
+----------------------------------------
+ <footer>
+----------------------------------------
+*/
+footer {
+    background-color: #e8efee;
+}
+.footer__content {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 0;
+}
+.footer__info p + p {
+    margin-top: 15px;
+}
+.footer__link .logo{
+    text-align: right;
+}
+.footer__social-media {
+    display: flex;
+    margin-top: 15px;
+}
+.footer__social-media a {
+    position: relative;
+    text-decoration: none;
+    font-size: 14px;
+    color: #484848;
+    transition: 0.5s;
+}
+.footer__social-media a:hover {
+    opacity: 0.6;
+}
+.decoration_line {
+    margin: 0 5px;
+    font-size: 13px;
+}
+.footer__copyright {
+    padding: 15px 0;
+    text-align: center;
+    background-color: #35564b;
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+    .footer__content {
+        flex-direction: column-reverse;
+    }
+    .footer__info {
+        line-height: 25px;
+    }
+    .footer__link .logo{
+        text-align: left;
+    }
+    .footer__social-media a {
+        font-size: 16px;
+    }
+    .footer__link {
+        margin-bottom: 30px;
+    }
+    .footer__copyright {
+        line-height: 25px;
+    }
+}
+/*
+----------------------------------------
+ 首頁
+----------------------------------------
+*/
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 580px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/banner-big.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.banner h1 {
+    font-size: 60px;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 768px) {
+    .banner {
+        height: 415px;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('../images/banner-small.jpg');
+    }
+}
+@media (max-width: 568px) {
+    .banner {
+        height: 305px;
+    }
+    .banner h1 {
+        font-size: 40px;
+    }
+}
+
+.introduction {
+    margin: 80px 0 120px 0;
+}
+.introduction__info {
+    margin-bottom: 80px;
+    text-align: center;
+}
+.introduction__info p {
+    line-height: 30px;
+}
+.introduction__info p + p {
+    margin: 20px 0 0 0;
+}
+.introduction__button a {
+    display: inline-block;
+    padding: 65px 80px;
+    margin: 0 12.5px;
+    font-size: 36px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #3e613d;
+    border-radius: 10px;
+    transition: 0.4s;
+}
+.introduction__button a:hover {
+    transform: translateY(-4px);
+}
+.introduction__button--order {
+    background-color: #a8e8e1;
+}
+.introduction__button--list {
+    background-color: #f9f9b5;
+}
+@media (max-width: 768px) {
+    .introduction {
+        margin-bottom: 80px;
+    }
+    .introduction__info {
+        margin-bottom: 50px;
+    }
+    .introduction__info p {
+        text-align: left;
+    }
+    .introduction__button {
+        display: flex;
+        justify-content: center;
+    }
+    .introduction__button a {
+        padding: 25px 35px;
+        font-size: 24px;
+    }
+}
+@media (max-width: 568px) {
+    .introduction__info {
+        margin-bottom: 20px;
+    }
+    .introduction__button a {
+        font-size: 20px;
+        margin: 0;
+    }
+    .introduction__button a+a {
+        margin-left: 15px;
+    }
+}
+@media (max-width: 320px) {
+    /* iphone5 */
+    .introduction__button a {
+        padding: 25px 18px;
+    }
+}
+
+.menu {
+    margin-bottom: 80px;
+}
+.menu__photo {
+    display: flex;
+}
+.menu__photo a {
+    position: relative;
+    width: 25%;
+    overflow: hidden;
+}
+/* 滑鼠移入圖片後照片變暗 */
+.menu__photo a::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0;
+    transition: 0.3s;
+}
+.menu__photo a:hover::after {
+    opacity: 0.3;
+}
+/* 滑鼠移入圖片後會放大 */
+.menu__photo a:hover img {
+    transform: scale(1.1);
+}
+/* 滑鼠移入圖片後顯示產品名稱 */
+.menu__photo a:hover p {
+    opacity: 1;
+}
+.menu__photo a img {
+    display: block;
+    width: 100%;
+    transform: scale(1);
+    transition: 0.5s;
+}
+.menu__photo a p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: 0.6s;
+    z-index: 1;
+}
+@media (max-width: 768px) {
+    .menu__photo {
+        flex-wrap: wrap;
+    }
+    .menu__photo a {
+        width: 50%;
+    }
+}
+
+.comment {
+    margin-bottom: 90px;
+}
+.comment__info {
+    display: flex;
+    margin: 95px 0 0 0;
+    padding: 0;
+}
+.comment__info-item {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% / 3);
+    padding: 90px 25px 40px;
+    box-shadow: -1.4px -1.4px 4px #d8eaef;
+    border: 1px solid #c7e5ec;
+    border-radius: 5px;
+    line-height: 25px;
+}
+.comment__info-item:not(:first-child) {
+    margin-left: 15px;
+}
+.author {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.author__avatar {
+    margin: 0 auto 5px;
+    width: 105px;
+    height: 105px;
+    border: 1px solid #c1c1c1;
+    border-radius: 50%;
+}
+.author__avatar img {
+    width: 100%;
+}
+.content {
+    text-align: center;
+}
+@media (max-width: 568px) {
+    .comment__info {
+        flex-direction: column;
+        margin-top: 65px;
+    }
+    .comment__info-item {
+        width: 100%;
+    }
+    .comment__info-item:not(:first-child) {
+        margin: 100px 0 0;
+    }
+}
+
+.location iframe {
+    width: 100%;
+    height: 455px;
+    margin-bottom: 45px;
+}
+/*
+----------------------------------------
+ 抽獎頁面
+----------------------------------------
+*/
+.lottery {
+    position: relative;
+    min-height: 767px;
+    background-image: url('../images/BG-lottery.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.lottery.first-prize {
+  background-image: url('../images/BG-FIRST.jpg');
+}
+.lottery.second-prize {
+  background-image: url('../images/BG-SECOND.jpg');
+}
+.lottery.third-prize {
+  background-image: url('../images/BG-THIRD.jpg');
+}
+.lottery.none-prize {
+  background: black;
+}
+.lottery-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    padding: 40px;
+    max-width: 500px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+.lottery-box__info {
+    padding: 25px 0 35px 0;
+    color: #322929;
+    line-height: 1.5;
+}
+.lottery-box h2 {
+    font-size: 24px;
+    color: #5ec1b6;
+    text-align: center;
+}
+.lottery-box__info-item {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px dotted #cdcdcd;
+}
+.lottery-box__tittle {
+    margin-right: 20px;
+    font-size: 18px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+.lottery__btn,
+.result__btn {
+    margin: 0 auto;
+    padding: 18px 0;
+    max-width: 400px;
+    background-color: #e62a45;
+    border-radius: 8px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.lottery__btn:hover,
+.result__btn:hover {
+    background-color: #ff3150;
+}
+.lottery-result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px 100px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+}
+.lottery-result p {
+    margin-bottom: 55px;
+    font-size: 28px;
+    text-align: center;
+    color: #292222;
+}
+.lottery-hide {
+    display: none;
+}
+@media (max-width: 768px) {
+    .lottery-result {
+        width: 80%;
+        padding: 50px 30px;
+        box-sizing: border-box;
+        line-height: 1.5;
+    }
+}
+@media (max-width: 568px) {
+    .lottery-box {
+        width: 90%;
+        line-height: 1.5;
+    }
+    .lottery-box h2 {
+        text-align: left;
+    }
+    .lottery-box__info {
+        padding: 0 0 20px 0;
+    }
+    .lottery-box__info-item {
+        flex-direction: column;
+    }
+    .lottery-box__prize p{
+        margin-top: 5px;
+    }
+    .lottery-result {
+        width: 90%;
+        padding: 50px 30px;
+    }
+    .lottery-result p {
+        margin-bottom: 30px;
+        font-size: 28px;
+    }
+}
