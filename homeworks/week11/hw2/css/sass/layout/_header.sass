@@ -1,0 +1,32 @@
+.header
+	+breakpoints
+		padding: 0 20px
+.navbar
+	+flexColumn
+	width: 100%
+	height: 150px
+	+breakpoints
+		flex-direction: row
+		justify-content: space-between
+		height: 150px
+	&__logo
+		font-size: $font-size-xl
+		font-weight: $font-weight-bold
+		+breakpoints
+			font-size: $font-size-xl
+		&:hover
+			color: $grey2
+	&__list
+		margin-top: 30px
+		+flexRow
+		+breakpoints
+			margin-top: 0
+		ul
+			display: flex
+		li + li
+			margin-left: 20px
+		a
+			color: $grey2
+			// font-size: $font-size-s
+			&:hover
+				color: $grey1
