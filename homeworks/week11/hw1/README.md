@@ -1,7 +1,7 @@
 # 今天吃什麼 - 留言板
 「今天吃什麼」是一個留言板網站，會員可以新增及管理留言，讓總是煩惱三餐內容的人們可以互相交流的地方，讓彼此透過留言板激發靈感、記錄生活。
 
-> 網站網址：[http://mentor-program.co/mtr04group5/mily/week11/hw1/index.php](http://mentor-program.co/mtr04group5/mily/week11/hw1/index.php)
+> ☞ [留言板連結](http://mentor-program.co/mtr04group5/mily/week11/hw1/index.php)
 
 ## 基本功能
 - 會員機制：新增留言、編輯留言、刪除留言、個人資料修改
@@ -41,7 +41,7 @@
 
 ## 響應式網頁設計
 #### 電腦版
-![](https://imgpile.com/images/7uoaDi.gif)
+![](RWD-desktop.gif)
 
 #### 手機版
-![](https://imgpile.com/images/7uoEJl.gif)
+![](RWD-mobile.gif)
