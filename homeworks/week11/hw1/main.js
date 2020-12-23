@@ -16,26 +16,25 @@ function checkModal(target, outerElement, toggleElement) {
 
 // 執行 modal（參數一：被監聽的元素；參數二：觸發打開 modal 的按鈕）
 function modalAction(listener, button) {
-  document.querySelector(listener).addEventListener('click', function (e) {
-    if (e.target === button) {  // 如果點擊到觸發 modal 的按鈕 -> 打開 Modal
-      isOpen = true;
-      checkModal(e.target, '.modal', 'modal-hide');
-    } else if (e.target.classList.contains('modal-box') || 
-               e.target.classList.contains('modal__close') || 
-               e.target.classList.contains('modal__cancel')) 
-    { // 如果點擊到背景 / 關閉按鈕 / 取消按鈕 -> 關閉 Modal
-      isOpen = false;
-      checkModal(e.target, '.modal', 'modal-hide');
-    } // 除了上述三個指定位置以外，其他地方怎麼點擊都不會關掉 Modal
-  })
+  const modalButtons = document.querySelectorAll(button);
+  for (let modalButton of modalButtons) {
+    document.querySelector(listener).addEventListener('click', function (e) {
+      if (e.target === modalButton) {  // 如果點擊到觸發 modal 的按鈕 -> 打開 Modal
+        isOpen = true;
+        checkModal(e.target, '.modal', 'modal-hide');
+      } else if (e.target.classList.contains('modal-box') || 
+                e.target.classList.contains('modal__close') || 
+                e.target.classList.contains('modal__cancel')) 
+      { // 如果點擊到背景 / 關閉按鈕 / 取消按鈕 -> 關閉 Modal
+        isOpen = false;
+        checkModal(e.target, '.modal', 'modal-hide');
+      } // 除了上述三個指定位置以外，其他地方怎麼點擊都不會關掉 Modal
+    })
+  }
 }
 
 // 確認要刪除留言的 modal
-const modalButtons = document.querySelectorAll('.delete-modal__btn');
-for (let modalButton of modalButtons) {
-    modalAction('.comment', modalButton);
-}
+modalAction('.comment', '.delete-modal__btn');
 
 // 捨棄編輯留言的 modal
-const cancelEditButton = document.querySelector('.board__cancel-edit');
-modalAction('.modal', cancelEditButton);
+modalAction('.modal', '.board__cancel-edit');
