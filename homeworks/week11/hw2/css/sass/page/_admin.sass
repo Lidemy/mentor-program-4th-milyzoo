@@ -1,0 +1,165 @@
+// ----------------------------------------
+//  後台
+//  |- 01 首頁
+//  |- 02 文章管理
+//  |- 03 分類管理
+// ----------------------------------------
+/* -------------- 後台 - 首頁 -------------- */
+.admin
+	display: flex
+	flex-direction: column
+	margin: 0 auto
+	max-width: 800px
+	+breakpoints
+		flex-direction: row
+		justify-content: space-between
+	a
+		padding: 50px
+		width: 80%
+		text-align: center
+		color: $grey1
+		@extend %transition
+		+breakpoints
+			width: 45%
+		&:hover
+			background-color: $grey1
+			color: $white
+	a + a
+		margin-top: 20px
+		+breakpoints
+			margin-top: 0
+	span
+		margin-bottom: 10px
+		font-size: 36px
+	p
+		font-size: 24px
+.add-post-btn
+	position: fixed
+	right: 30px
+	bottom: 30px
+	display: flex
+	padding: 15px
+	border-radius: 50%
+	cursor: pointer
+	box-shadow: 0 0 20px rgba($color-primary, 0.3)
+	background-color: $color-primary
+	@extend %transition
+	&:hover
+		background-color: $color-primary-dark
+	span
+		font-size: 45px
+		color: $white
+	+breakpoints
+		right: 120px
+		bottom: 80px
+
+/* ------------- 後台 - 文章管理 ------------- */
+.admin-article
+	&__list
+		padding: 15px 30px
+		+breakpoints
+			padding: 50px
+	&__empty-item
+		font-size: 24px
+		color: $grey3
+		text-align: center
+	&__item
+		+flexRow(space-between, center)
+		flex-wrap: wrap
+		padding: 20px 0px
+		& + &
+			border-top: 1px solid $line
+		+breakpoints
+			flex-wrap: nowrap
+	&__title, &__created-at, &__actions
+		width: 100%
+	&__title
+		display: block
+		margin: 5px 0 15px 0
+		overflow: hidden
+		white-space: nowrap
+		text-overflow: ellipsis
+		+breakpoints
+			margin: 0
+			width: calc(100% - 320px)
+	&__created-at, &__actions
+		+breakpoints
+			width: 160px
+	&__created-at
+		font-size: $font-size-s
+		color: $grey2
+		text-align: left
+	&__actions
+		text-align: right
+
+/* ------------- 後台 - 分類管理 ------------- */
+.admin-category
+	padding: 30px
+	+breakpoints
+		padding: 50px
+	h1
+		margin-bottom: 30px
+		text-align: center
+		font-size: 20px
+		font-weight: $font-weight-medium
+	&.main-background
+		max-width: 500px
+	.btn__admin
+		margin-left: 0
+	&__add-category
+		display: flex
+		justify-content: space-between
+		margin: 0 auto
+		width: 100%
+	&__input
+			padding: 3px 5px
+			width: 70%
+			border: transparent
+			border-bottom: 1px solid $grey3
+			border-radius: 0
+			color: $color-primary
+			+breakpoints
+				width: 80%
+			&::placeholder
+				color: $grey3
+				@extend %transition
+			&:focus
+				border-bottom: 1px solid $grey3
+				&::placeholder
+					color: $grey4
+	&__list
+		margin-top: 40px
+		li
+			+flexColumn(initial, center)
+			padding: 0 5px 20px 5px
+			margin-bottom: 20px
+			border-bottom: 1px solid $grey4
+			&:first-child
+				padding-top: 20px
+				border-top: 1px solid $grey4
+			&:last-child
+				margin-bottom: 0
+			+breakpoints
+				flex-direction: row
+				justify-content: space-between
+			p
+				display: flex
+				align-items: center
+				margin-bottom: 15px
+				+breakpoints
+					margin-bottom: 0
+					width: 50%
+				span
+					margin-right: 5px
+					font-size: 17px
+					color: $grey2
+	&__update-category
+		display: flex
+		flex-direction: column
+		.admin-category__input
+			margin-bottom: 20px
+			width: 100%
+		.admin-category__actions
+			text-align: center
+		input[type=submit]
+			border: 1px solid $grey3

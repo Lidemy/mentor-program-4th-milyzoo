@@ -1,0 +1,174 @@
+// ----------------------------------------
+//  其他頁面
+//  |- 01 文章分類
+//  |- 02 文章列表
+//  |- 03 登入頁
+//  |- 04 編輯文章
+//  |- 05 錯誤頁面
+// ----------------------------------------
+
+// ----------------------------------------
+//  文章分類
+// ----------------------------------------
+.category-box
+	padding: 40px 30px
+	color: $grey1
+	+breakpoints
+		padding: 70px 80px
+.category-list
+	display: flex
+	flex-wrap: wrap
+	li
+		margin: 15px
+		border-bottom: 1px dotted $grey3
+		&.admin-article__empty-item
+			margin: 0 auto
+			border-bottom: none
+	a
+		color: $grey1
+		display: block
+		&:hover
+			color: $grey3
+
+// ----------------------------------------
+//  文章列表
+// ----------------------------------------
+.article-list
+	&-box
+		padding: 40px 30px
+		+breakpoints
+			padding: 70px 80px
+	li
+		position: relative
+		border-bottom: 1px solid $grey4
+		&.admin-article__empty-item
+			border-bottom: none
+		&:first-child
+			padding: 0 5px 18px 5px
+		& + li
+			padding: 18px 5px
+	&__title
+		display: inline-block
+		margin-bottom: 5px
+		font-weight: $font-weight-regular
+		color: $grey1
+		@extend %transition
+		&:hover
+			color: $color-primary
+	&__time
+		+flexRow(initial, center)
+		font-size: $font-size-xs
+		color: $grey3
+		span
+			margin-right: 5px
+			font-size: 13px
+
+// ----------------------------------------
+//  登入頁
+// ----------------------------------------
+.login
+	margin: 0 auto
+	padding: 30px
+	width: 100%
+	border-radius: 3px
+	@extend %background
+	+breakpoints
+		padding: 40px
+		max-width: 400px
+	h2
+		text-align: center
+	form
+		width: 100%
+	input
+		width: 100%
+	.btn__submit
+		border: transparent
+.input
+	&__wrapper
+		position: relative
+		margin-bottom: 20px
+		.material-icons
+			position: absolute
+			top: 50%
+			left: 10px
+			transform: translateY(-50%)
+	&__field
+		padding: 5px 10px 5px 40px
+		height: 35px
+		border: solid 1px $grey3
+		border-radius: 3px
+		@extend %transition
+		&::placeholder
+			@extend %transition
+		&:focus    
+			border: solid 1px $grey1
+			&::placeholder
+				color: $grey3
+		+breakpoints
+			height: 45px
+
+// ----------------------------------------
+//  編輯文章
+// ----------------------------------------
+.edit-post
+	+flexColumn(center, center)
+	padding: 20px
+	+breakpoints
+		padding: 30px
+	&__title
+		width: 100%
+		+breakpoints
+			display: flex
+	&__select
+		position: relative
+		select
+			margin: 0 20px 20px 0
+			padding: 10px
+			width: 100%
+			border: 1px solid $grey3
+			border-radius: 3px
+			color: $grey1
+			+breakpoints
+				width: 200px
+		&::after			
+			position: absolute
+			content: "expand_more"			
+			font-family:"Material Icons"
+			right: 15px
+			bottom: 32px
+			font-size: 24px
+			+breakpoints
+				right: 30px
+	&__input
+		margin-bottom: 20px
+	&__input, &__content
+		padding: 10px
+		border: 1px solid $grey3
+		border-radius: 3px
+		&::placeholder
+			color: $grey3
+			@extend %transition
+		&:focus
+			border: 1px solid $grey2
+			&::placeholder
+				color: $grey4
+	&__content
+		height: 300px
+		+breakpoints
+			height: 500px
+	input[type="text"], textarea
+		width: 100%
+
+// ----------------------------------------
+//  錯誤頁面
+// ----------------------------------------
+.error-page
+	padding: 70px 80px
+	&__title
+		font-size: 22px
+		color: $grey3
+		text-align: center
+		font-weight: $font-weight-regular
+		letter-spacing: 2px
+		+breakpoints
+			font-size: 26px
