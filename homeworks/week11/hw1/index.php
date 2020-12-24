@@ -22,7 +22,9 @@
   $sql = 
     'SELECT '.
       'C.id AS id, C.content AS content, '.
-      'C.created_at AS created_at, U.nickname AS nickname, U.username as username '.
+      'C.is_hidden AS is_hidden, '.
+      'C.created_at AS created_at, '.
+      'U.nickname AS nickname, U.username as username '.
     'FROM mily_comments AS C '.
     'LEFT JOIN mily_users AS U ON C.username = U.username '.
     'WHERE C.is_deleted = "0" '.
@@ -83,6 +85,19 @@
           }
         ?>
         <textarea class="board__input-tittle" name="content" rows="5" placeholder="<?php echo escape($user['nickname']);?>，一起聊聊要吃什麼吧！"></textarea>
+        <div class="board__input-radio">
+          <p class="board__input-radio__title">開啟悄悄話模式</p>
+          <div class="board__input-radio__option">
+            <label for="is_hidden">
+                <input type="radio" name="is_hidden" id="is_hidden" value="0" checked>
+                <span>否</span>
+            </label>
+            <label for="is_show">
+                <input type="radio" name="is_hidden" id="is_show" value="1">
+                <span>是</span>
+            </label>
+          </div>
+        </div>
         <button class="board__submit" type="submit">送出<img src="images/send.svg"></button>
       </form>        
     <?php } else { ?>
@@ -95,7 +110,6 @@
         <?php while($row = $result->fetch_assoc()) { ?>
           <div class="card">
             <div class="card__info">
-              <div class="card__avatar"></div>
               <div class="card__detail">
                   <p class="card__author"><?php echo escape($row['nickname']); ?></p>
                   <p class="card__time"><?php echo escape($row['created_at']); ?></p>
@@ -119,8 +133,23 @@
                   </div>
                 </div>
               <?php } ?>
-            </div>
-            <p class="card__message"><?php echo escape($row['content']); ?></p>
+            </div>              
+            <!-- 如果訊息沒有隱藏 => 顯示留言 -->
+            <?php if ($row['is_hidden'] == '0') { ?>
+              <p class="card__message"><?php echo escape($row['content']); ?></p>
+            <?php } ?>
+            <!-- 如果訊息隱藏 + 沒有權限 => 不顯示留言 -->
+            <?php if ($row['is_hidden'] == '1' && !hasPermission($user, 'showHiddenMessage', $row)) { ?>
+              <p class="card__message-hidden">悄悄話 ʕ∙ჲ∙ʔ</p>
+            <?php } ?>
+            <!-- 如果訊息沒有隱藏 + 有權限 => 顯示留言 -->
+            <?php if ($row['is_hidden'] == '1' && hasPermission($user, 'showHiddenMessage', $row)) { ?>
+              <div class="card__message-mark-hidden">
+                <img src="images/lock.svg" alt="">
+                <p>這則留言是悄悄話喔</p>
+              </div>
+              <p class="card__message"><?php echo escape($row['content']); ?></p>
+            <?php }?>
           </div>
         <?php } ?>
     </section>

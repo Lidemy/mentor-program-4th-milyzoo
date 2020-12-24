@@ -434,6 +434,62 @@ textarea.board__input-tittle {
 textarea.board__input-tittle:focus {
   background-color: #f0eff4;
 }
+/* ------------ radio 樣式 ------------ */
+.board__input-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  color: #333333;
+}
+.board__input-radio__title {
+  margin-right: 10px;
+}
+.board__input-radio__option {
+  display: flex;
+}
+.board__input-radio__option label {
+  position: relative;
+  display: flex;
+  padding-left: 20px;
+  cursor: pointer;
+}
+.board__input-radio__option label + label {
+  margin-left: 10px;
+}
+input[type="radio"] {
+  appearance: none;
+}
+.board__input-radio__option span {
+  margin-left: 3px;
+}
+.board__input-radio__option span::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 5px;
+  height: 15px;
+  width: 15px;
+  border: 1px solid #A191D4;
+  border-radius: 50%;
+  box-shadow: transparent;
+  transition: 0.5s;
+}
+.board__input-radio__option span::after {
+  position: absolute;
+  content: "";
+  left: 3px;
+  top: 8px;
+  height: 11px;
+  width: 11px;
+  background-color: #A191D4;
+  border-radius: 50%;
+  opacity: 0;
+  transition: 0.5s;
+}
+.board__input-radio__option input:checked + span::after {
+  opacity: 1;
+}
+
 .board__submit {
   position: relative;
   display: flex;
@@ -530,6 +586,11 @@ textarea.board__input-tittle:focus {
   overflow-wrap: break-word; /* 單字太長就強制換行 */
   transition: 0.3s;
 }
+@media screen and (max-width: 768px) {
+  .card {
+    padding: 30px;
+  }
+}
 .card::before {
   position: absolute;
   content: "";
@@ -546,7 +607,6 @@ textarea.board__input-tittle:focus {
 }
 .card__info {
   display: flex;
-  align-items: center;
 }
 .card__avatar {
   margin-right: 15px;
@@ -556,9 +616,11 @@ textarea.board__input-tittle:focus {
   background: #e7e3f4;
 }
 .card__detail {
-  width: calc(100% - 120px);
+  width: calc(100% - 60px);
+  margin-right: 10px;
 }
 .card__author {
+  margin-bottom: 3px;
   max-width: 100%;
   font-weight: bold;
   color: #333333;
@@ -584,10 +646,33 @@ textarea.board__input-tittle:focus {
   opacity: 1;
 }
 .card__message {
-  color: #555555;
-  width: 100%;
   margin: 15px 0;
+  width: 100%;
+  color: #555555;
   white-space: pre-line;
+}
+.card__message-hidden {
+  margin: 15px 0;
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+  color: #A191D4;
+}
+.card__message-mark-hidden {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  padding: 3px 15px;
+  width: max-content;
+  color: #653CFF;
+  border: 1px solid #653CFF;
+  border-radius: 15px;
+  font-size: 14px;
+}
+.card__message-mark-hidden img {
+  margin-right: 5px;
+  width: auto;
+  height: 13px;
 }
 @media screen and (max-width: 768px) {
   .card::before {
