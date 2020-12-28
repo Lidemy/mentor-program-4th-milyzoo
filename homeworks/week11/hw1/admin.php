@@ -32,16 +32,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>後台管理</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <nav class="nav nav__menu-active">
     <div class="nav__content">
-      <a class="logo" href="admin.php">後台管理</a>
+      <a class="logo" href="index.php">今天吃什麼<span>ლ(´ڡ`ლ)</span></a>
       <div class="nav__list">
       <?php if ($username) { ?>
         <p class="nav__nickname">Hi，<?php echo escape($user['nickname']);?></p>
-        <a class="nav__item" href="index.php"><img class="nav__item-icon" src="images/home.svg">回首頁</a>
+        <a class="nav__item" href="admin.php"><img class="nav__item-icon" src="images/admin.svg">管理後台</a>
         <a class="nav__item" href="update_user.php"><img class="nav__item-icon" src="images/user-edit.svg">修改資料</a>
         <a class="nav__item" href="logout.php"><img class="nav__item-icon" src="images/signin.svg">登出</a>
       <?php } ?>
@@ -70,11 +70,13 @@
               <li data-title="權限" class="user-table__role">
                 <form method="POST" action="handle_update_role.php">
                   <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                  <select name="role" class="user-table__select">
-                    <option <?php echo $row['role'] == "EDITOR"? 'selected':'' ?> value="EDITOR">共同編輯者</option>
-                    <option <?php echo $row['role'] == "NORMAL"? 'selected':'' ?> value="NORMAL">一般使用者</option>
-                    <option <?php echo $row['role'] == "BLOCKLIST"? 'selected':'' ?> value="BLOCKLIST">停權使用者</option>
-                  </select>
+                  <div class="user-table__select">
+                    <select name="role">
+                      <option <?php echo $row['role'] == "EDITOR"? 'selected':'' ?> value="EDITOR">共同編輯者</option>
+                      <option <?php echo $row['role'] == "NORMAL"? 'selected':'' ?> value="NORMAL">一般使用者</option>
+                      <option <?php echo $row['role'] == "BLOCKLIST"? 'selected':'' ?> value="BLOCKLIST">停權使用者</option>
+                    </select>
+                  </div>
                   <button type="submit" class="user-table__submit">修改</button>
                 </form>
               </li>
