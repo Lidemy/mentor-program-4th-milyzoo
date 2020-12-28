@@ -10,6 +10,14 @@ document.querySelector('.burger-btn').addEventListener('click', () => {
   document.querySelector('.burger-btn').classList.toggle('open');
 });
 
+// 因為不會換頁，所以點擊後要自動關閉漢堡選單
+document.querySelector('.nav').addEventListener('click', (e) => {
+  if (e.target.classList.contains('nav__item')) {    
+    document.querySelector('.nav').classList.remove('open')
+    document.querySelector('.burger-btn').classList.remove('open')
+  }
+});
+
 const API_URL = 'https://api.twitch.tv/kraken';
 const CLIENT_ID = '6gpi6hlo1yzk790szczeb0pwfna9wk';
 
