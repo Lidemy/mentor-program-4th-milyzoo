@@ -13,6 +13,12 @@ body {
     padding: 0;
     list-style: none;
 }
+input[type="text"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
 /* 
 -----------------------------------
  main
@@ -88,7 +94,7 @@ h1 {
     margin-right: 15px;
     padding: 5px 10px;
     width: calc(100% - 70px);
-    border: none;
+    border: 1px solid transparent;
     border-bottom: 1px solid #DBD7D5;
     outline: none;
     font-size: 18px;

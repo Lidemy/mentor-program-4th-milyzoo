@@ -34,7 +34,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>今天吃什麼 ლ(´ڡ`ლ)</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <nav class="nav nav__menu-active">
@@ -45,7 +45,7 @@
         <a class="nav__item" href="register.php"><img class="nav__item-icon" src="images/signup.svg">註冊</a>
         <a class="nav__item" href="login.php"><img class="nav__item-icon" src="images/signin.svg">登入</a>
       <?php } else { ?>
-        <p class="nav__nickname">Hi，<?php echo $user['nickname'];?></p>
+        <p class="nav__nickname">Hi，<?php echo escape($user['nickname']);?></p>
         <?php if ($user && $user['role'] === 'ADMIN') { ?>
           <a class="nav__item" href="admin.php"><img class="nav__item-icon" src="images/admin.svg">管理後台</a>
         <?php } ?>
@@ -58,19 +58,21 @@
   </nav>
   <div class="container">
       <?php if ($username) { // 如果有登入就顯示以下 ?>
-        <h2 class="tittle"><img src="images/comment-edit.svg">編輯留言</h2>
+        <h2 class="title"><img src="images/comment-edit.svg">編輯留言</h2>
         <form class="board" method="POST" action="handle_update_comment.php">
-          <?php
-            if (!empty($_GET['errCode'])) {
-              $code = $_GET['errCode'];
-              $msg = 'Error';
-              if ($code === '1') {
-                $msg = '修改內容不能空白喔！';
+          <div class="board__content">
+            <?php
+              if (!empty($_GET['errCode'])) {
+                $code = $_GET['errCode'];
+                $msg = 'Error';
+                if ($code === '1') {
+                  $msg = '修改內容不能空白喔！';
+                }
+                echo '<p class="error-update_comment">錯誤：' . $msg . '</p>';
               }
-              echo '<p class="error-update_comment">錯誤：' . $msg . '</p>';
-            }
-          ?>
-          <textarea class="board__input-tittle" name="content" rows="5"><?php echo $row['content']; ?></textarea>
+            ?>
+            <textarea class="board__textarea" name="content"><?php echo escape($row['content']); ?></textarea>
+          </div>
           <input type="hidden" name="id" value="<?php echo $row['id']; ?>"> 
           <!-- 隱藏的 input，用來取得 網址上的 id -->
           <div class="update-comment__btn modal modal-hide">
@@ -100,5 +102,10 @@
       ?>
   </div>
   <script src="main.js"></script>
+  <script>
+    // 捨棄編輯留言的 modal
+    const editButton = document.querySelector('.board__cancel-edit')
+    modalAction('.modal', editButton);
+  </script>
 </body>
 </html>

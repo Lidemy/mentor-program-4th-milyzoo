@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>今天吃什麼 ლ(´ڡ`ლ)</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <nav class="nav nav__menu-active">
@@ -34,7 +34,7 @@
   </nav>
   <div class="container">
     <div class="register register-done">
-      <h1 class="register__tittle">註冊完成</h1>
+      <h1 class="register__title">註冊完成</h1>
       <p>恭喜您，註冊成功！</p>
       <p>快和大家一起交流吧 (*•̀ᴗ•́*)و </p>
       <a href="index.php" class="register__btn">留言去</a>
