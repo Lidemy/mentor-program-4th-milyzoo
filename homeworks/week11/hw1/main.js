@@ -15,9 +15,11 @@ function checkModal(target, outerElement, toggleElement) {
 }
 
 // 執行 modal（參數一：被監聽的元素；參數二：觸發打開 modal 的按鈕）
-function modalAction(listener, targetButton) {
+function modalAction(listener, button) {
+  const modalButtons = document.querySelectorAll(button);
+  for (let modalButton of modalButtons) {
     document.querySelector(listener).addEventListener('click', function (e) {
-      if (e.target === targetButton) {  // 如果點擊到觸發 modal 的按鈕 -> 打開 Modal
+      if (e.target === modalButton) {  // 如果點擊到觸發 modal 的按鈕 -> 打開 Modal
         isOpen = true;
         checkModal(e.target, '.modal', 'modal-hide');
       } else if (e.target.classList.contains('modal-box') || 
@@ -28,4 +30,11 @@ function modalAction(listener, targetButton) {
         checkModal(e.target, '.modal', 'modal-hide');
       } // 除了上述三個指定位置以外，其他地方怎麼點擊都不會關掉 Modal
     })
+  }
 }
+
+// 確認要刪除留言的 modal
+modalAction('.comment', '.delete-modal__btn');
+
+// 捨棄編輯留言的 modal
+modalAction('.modal', '.board__cancel-edit');

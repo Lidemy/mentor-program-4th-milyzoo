@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>今天吃什麼 ლ(´ڡ`ლ)</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <nav class="nav nav__menu-active">
@@ -19,8 +19,8 @@
     </div>
   </nav>
   <div class="container">
-    <form class="background" method="POST" action="handle_login.php">
-        <h1 class="register__title">登入會員</h1>
+    <form class="register" method="POST" action="handle_login.php">
+        <h1 class="register__tittle">登入會員</h1>
         <?php
           if (!empty($_GET['errCode'])) {
             $code = $_GET['errCode'];
@@ -33,8 +33,8 @@
             echo '<h2 class="error-register">' . $msg . '</h2>';
           }
         ?>
-        <label class="input-title"><span>帳號</span><input type="text" name="username" /></label>
-        <label class="input-title"><span>密碼</span><input type="password" name="password" /></label>
+        <label class="board__input-tittle"><span>帳號</span><input type="text" name="username" /></label>
+        <label class="board__input-tittle"><span>密碼</span><input type="password" name="password" /></label>
         <a href="register.php" class="login-signup-toggle">還沒有帳號嗎？按此註冊</a>
         <button class="register__btn" type="submit">登入</button>
     </form>

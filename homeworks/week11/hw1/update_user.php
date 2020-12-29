@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>今天吃什麼 ლ(´ڡ`ლ)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <nav class="nav nav__menu-active">
@@ -38,7 +38,7 @@
         <a class="nav__item" href="register.php"><img class="nav__item-icon" src="images/signup.svg">註冊</a>
         <a class="nav__item" href="login.php"><img class="nav__item-icon" src="images/signin.svg">登入</a>
       <?php } else { ?>
-        <p class="nav__nickname">Hi，<?php echo escape($user['nickname']);?></p>
+        <p class="nav__nickname">Hi，<?php echo $user['nickname'];?></p>
         <?php if ($user && $user['role'] === 'ADMIN') { ?>
           <a class="nav__item" href="admin.php"><img class="nav__item-icon" src="images/admin.svg">管理後台</a>
         <?php } ?>
@@ -50,7 +50,7 @@
     </div>
   </nav>
   <div class="container">
-    <section class="background">
+    <section class="update_user">
         <form method="POST" action="handle_update_user.php">
             <?php
               if (!empty($_GET['errCode'])) {
@@ -62,14 +62,14 @@
                 echo '<p class="error-update-user">錯誤：' . $msg . '</p>';
               }
             ?>
-            <div class="update-user">
-                <p class="update__title">原本暱稱：</p>
+            <div class="update__input">
+                <p class="update__tittle">原本暱稱：</p>
                 <?php $row = $result->fetch_assoc() ?>
-                <p><?php echo escape($user['nickname']);?></p>
+                <p><?php echo $user['nickname'];?></p>
             </div>
-            <label class="input-title">
-                <span class="update__title">新的暱稱：</span>
-                <input class="update-user__input" type="text" name="nickname" />
+            <label class="update__input">
+                <span class="update__tittle">新的暱稱：</span>
+                <input type="text" name="nickname" />
             </label>
             <button class="register__btn" type="submit">確定修改</button>
         </form>

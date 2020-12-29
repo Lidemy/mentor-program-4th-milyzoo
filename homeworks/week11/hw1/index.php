@@ -21,13 +21,13 @@
   // 我們真正要的是 mily_comments 的 id，但如果像上述一樣，沒有用 AS 個別命名的話，得到的 id 卻是 mily_users 資料表的 id （會覆蓋過去）
   $sql = 
     'SELECT '.
-      'C.id AS id, C.content AS content, C.avatar AS avatar, '.
+      'C.id AS id, C.content AS content, '.
       'C.is_hidden AS is_hidden, '.
       'C.created_at AS created_at, '.
       'U.nickname AS nickname, U.username as username '.
     'FROM mily_comments AS C '.
     'LEFT JOIN mily_users AS U ON C.username = U.username '.
-    'WHERE C.is_deleted = 0 '.
+    'WHERE C.is_deleted = "0" '.
     'ORDER BY C.id DESC '.
     'LIMIT ? OFFSET ?';
   $stmt = $conn->prepare($sql);
@@ -45,7 +45,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>今天吃什麼 ლ(´ڡ`ლ)</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <nav class="nav nav__menu-active">
@@ -74,55 +74,34 @@
       </div>
     <?php } else if ($username) { ?>
       <form class="board" method="POST" action="handle_add_comment.php">
-        <div class="board__content">
-          <?php
-            if (!empty($_GET['errCode'])) {
-              $code = $_GET['errCode'];
-              $msg = 'Error';
-              if ($code === '1') {
-                $msg = '資料不齊全';
-              }
-              echo '<h2 class="error">錯誤：' . $msg . '</h2>';
+        <?php
+          if (!empty($_GET['errCode'])) {
+            $code = $_GET['errCode'];
+            $msg = 'Error';
+            if ($code === '1') {
+              $msg = '資料不齊全';
             }
-          ?>
-          <textarea class="board__textarea" name="content" placeholder="<?php echo escape($user['nickname']);?>，一起聊聊要吃什麼吧！"></textarea>
-        </div>
-        <div class="board__info">
-          <ul class="board__setting">
-            <li class="board__setting__item">
-              <p class="board__setting__item__title">頭像</p>
-              <div class="user-table__select">
-                <select name="avatar">
-                  <option value="orange">柑橘</option>
-                  <option value="grapefruit">柚子</option>
-                  <option value="peach">蜜桃</option>
-                </select>
-              </div>
-            </li>
-            <li class="board__setting__item">
-              <p class="board__setting__item__title"><img src="images/lock-black.svg">悄悄話</p>
-              <div class="board__setting__item__option">
-                <label for="is_hidden">
-                    <input type="radio" name="is_hidden" id="is_hidden" value="0" checked>
-                    <span>否</span>
-                </label>
-                <label for="is_show">
-                    <input type="radio" name="is_hidden" id="is_show" value="1">
-                    <span>是</span>
-                </label>
-              </div>
-            </li>
-          </ul>
-          <div class="board__button">
-            <button class="board__reset" type="Reset">重置</button>
-            <button class="board__submit" type="submit">
-              送出內容<img src="images/send.svg">
-            </button>
+            echo '<h2 class="error">錯誤：' . $msg . '</h2>';
+          }
+        ?>
+        <textarea class="board__input-tittle" name="content" rows="5" placeholder="<?php echo escape($user['nickname']);?>，一起聊聊要吃什麼吧！"></textarea>
+        <div class="board__input-radio">
+          <p class="board__input-radio__title">開啟悄悄話模式</p>
+          <div class="board__input-radio__option">
+            <label for="is_hidden">
+                <input type="radio" name="is_hidden" id="is_hidden" value="0" checked>
+                <span>否</span>
+            </label>
+            <label for="is_show">
+                <input type="radio" name="is_hidden" id="is_show" value="1">
+                <span>是</span>
+            </label>
           </div>
         </div>
+        <button class="board__submit" type="submit">送出<img src="images/send.svg"></button>
       </form>        
     <?php } else { ?>
-      <div class="board-guest board__content">
+      <div class="board board-guest">
         <p>立即登入發布留言</p>
         <a class="board-guest__btn" href="login.php">登入</a>
       </div>
@@ -131,9 +110,6 @@
         <?php while($row = $result->fetch_assoc()) { ?>
           <div class="card">
             <div class="card__info">
-              <div class="card__avatar">
-                <img src="images/avatar/<?php echo escape($row['avatar']); ?>.png">
-              </div>
               <div class="card__detail">
                   <p class="card__author"><?php echo escape($row['nickname']); ?></p>
                   <p class="card__time"><?php echo escape($row['created_at']); ?></p>
@@ -159,21 +135,18 @@
               <?php } ?>
             </div>              
             <!-- 如果訊息沒有隱藏 => 顯示留言 -->
-            <?php if ($row['is_hidden'] === 0) { ?>
+            <?php if ($row['is_hidden'] == '0') { ?>
               <p class="card__message"><?php echo escape($row['content']); ?></p>
             <?php } ?>
             <!-- 如果訊息隱藏 + 沒有權限 => 不顯示留言 -->
-            <?php if ($row['is_hidden'] === 1 && !hasPermission($user, 'showHiddenMessage', $row)) { ?>
-              <div class="card__message-hidden">
-                <img src="images/lock.svg">
-                <p>悄悄話</p>
-              </div>
+            <?php if ($row['is_hidden'] == '1' && !hasPermission($user, 'showHiddenMessage', $row)) { ?>
+              <p class="card__message-hidden">悄悄話 ʕ∙ჲ∙ʔ</p>
             <?php } ?>
             <!-- 如果訊息沒有隱藏 + 有權限 => 顯示留言 -->
-            <?php if ($row['is_hidden'] === 1 && hasPermission($user, 'showHiddenMessage', $row)) { ?>
+            <?php if ($row['is_hidden'] == '1' && hasPermission($user, 'showHiddenMessage', $row)) { ?>
               <div class="card__message-mark-hidden">
-                <img src="images/lock.svg">
-                <p>這則留言是悄悄話</p>
+                <img src="images/lock.svg" alt="">
+                <p>這則留言是悄悄話喔</p>
               </div>
               <p class="card__message"><?php echo escape($row['content']); ?></p>
             <?php }?>
@@ -181,7 +154,7 @@
         <?php } ?>
     </section>
     <?php 
-      $stmt = $conn->prepare('SELECT count(id) AS count FROM mily_comments WHERE is_deleted = 0');
+      $stmt = $conn->prepare('SELECT count(id) AS count FROM mily_comments WHERE is_deleted = "0"');
       // 找出沒被刪除的留言
       $result = $stmt->execute();
       $result = $stmt->get_result();
@@ -237,12 +210,5 @@
     </div>
   </div>
   <script src="main.js"></script>
-  <script>
-    // 確認要刪除留言的 modal
-    const deleteButtons = document.querySelectorAll('.delete-modal__btn');
-    for (let deleteButton of deleteButtons) {
-      modalAction('.comment', deleteButton);
-    }
-  </script>
 </body>
 </html>

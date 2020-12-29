@@ -3,15 +3,11 @@
   
   function getUserFromUsername($username) {
     global $conn;
-    $sql = 'SELECT * FROM mily_users WHERE username = ?';
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $username); // s 代表 string
-
-    $result = $stmt->execute();
-    if (!$result) {
-      die('Error:' . $conn->error); // 如果沒有東西就顯示錯誤訊息
-    }
-    $result = $stmt->get_result(); // 用了 $stmt 後，要再加上這一行才會把結果拿回來
+    $sql = sprintf(
+      'SELECT * FROM mily_users WHERE username = "%s"',
+      $username
+    );
+    $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     return $row; // 裡面有 username, id, nickname
   }

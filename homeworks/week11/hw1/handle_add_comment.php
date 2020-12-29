@@ -10,7 +10,6 @@
 
   $username = $_SESSION['username'];
   $user = getUserFromUsername($username);
-  $avatar = $_POST['avatar'];
   $is_hidden = $_POST['is_hidden'];
 
   // 如果沒有權限就會導回首頁
@@ -20,9 +19,9 @@
   }
 
   $content = $_POST['content'];
-  $sql = 'INSERT INTO mily_comments(username, content, avatar, is_hidden) VALUES(?, ?, ?, ?)';
+  $sql = 'INSERT INTO mily_comments(username, content, is_hidden) VALUES(?, ?, ?)';
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('ssss', $username, $content, $avatar, $is_hidden); // 把參數放進去，有幾個字就有幾個 s (s 代表 string，如果要放整數就寫 i，代表 int)
+  $stmt->bind_param('sss', $username, $content, $is_hidden); // 把參數放進去，有幾個字就有幾個 s (s 代表 string，如果要放整數就寫 i，代表 int)
   $result = $stmt->execute();
   if (!$result) {
     die(print_r($conn->error));

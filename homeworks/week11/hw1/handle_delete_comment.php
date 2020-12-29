@@ -14,10 +14,10 @@
   }
 
   // 檢查沒問題再刪除 (for 會員)
-  $sql = 'UPDATE mily_comments SET is_deleted = 1 WHERE id = ? AND username = ?'; // soft delete 的做法
+  $sql = 'UPDATE mily_comments SET is_deleted = "1" WHERE id = ? AND username = ?'; // soft delete 的做法
   // 檢查沒問題再刪除 (for 管理員或共同編輯者)
   if (isAdmin($user) || isEditor($user)) {
-    $sql = 'UPDATE mily_comments SET is_deleted = 1 WHERE id = ?';
+    $sql = 'UPDATE mily_comments SET is_deleted = "1" WHERE id = ?';
   }
   $stmt = $conn->prepare($sql);
   if (isAdmin($user) || isEditor($user)) {
