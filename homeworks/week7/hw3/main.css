@@ -13,10 +13,12 @@ body {
     padding: 0;
     list-style: none;
 }
-input[type="text"] {
+input[type="text"], input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+}
+input[type="text"] {
     border-radius: 0;
 }
 /* 
@@ -94,6 +96,7 @@ h1 {
     margin-right: 15px;
     padding: 5px 10px;
     width: calc(100% - 70px);
+    box-sizing: border-box;
     border: 1px solid transparent;
     border-bottom: 1px solid #DBD7D5;
     outline: none;
