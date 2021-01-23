@@ -1,0 +1,211 @@
+body {
+    background-color: #eee;
+    font-weight: 200;
+    font-family: 'Microsoft JhengHei', '微軟正黑', Arial;
+}
+h1 {
+  color: rgba(133, 179, 169, 0.35);
+  font-weight: normal;
+  margin: 100px auto 30px auto;
+  font-family: 'Raleway', Helvetica, Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 60px;
+  text-transform:uppercase;
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 50px;
+  }
+}
+.container {
+  max-width: 600px;
+}
+.todo-box {
+    margin: 0 auto;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+.add-input {
+  border-bottom: 1px solid #ededed;
+  margin-bottom: -1px;
+}
+.add-input input{
+  padding: 15px 20px;
+  height: auto;
+  border: transparent;
+  font-size: 24px;
+}
+.add-input input::placeholder {
+  font-family: 'Raleway', Helvetica, Arial, Helvetica, sans-serif;
+  color: #dddddd;
+  font-weight: 200;
+  font-size: 24px;
+  font-style: italic;
+}
+.add-input input:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+@media screen and (max-width: 768px) {
+  .add-input input::placeholder {
+    font-size: 20px;
+  }
+}
+.add-input__btn {
+  padding: 0;
+  width: 100px;
+  border: transparent;
+  border-left: 1px solid #e6e6e6;
+  color: #aaaaaa;
+  background-color: transparent;
+  font-family: 'Raleway', Helvetica, Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 50px;
+  transition: 0.5s;
+}
+.add-input__btn:hover {
+  background-color: rgba(133, 179, 169, 0.1);
+}
+.add-input__btn:focus {
+  outline: transparent;
+}
+.todo-list {
+  margin: 0;
+  padding: 0;
+}
+.todo-item {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  list-style: none;
+  color: #666666;
+}
+.todo-item__body {
+  display: flex;
+  width: 100%;
+}
+.todo-item__complete label {
+  text-decoration: line-through;
+  color:  #cccccc;
+}
+.todo-item__btn {
+  text-align: end;
+}
+.todo-item:first-child {
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+  margin: 0 0 -1px 0;
+}
+.todo-item + .todo-item {
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed;
+  margin: -1px 0;
+}
+.todo-item__content {
+  width: 100%;
+  word-break: break-word;
+}
+.todo-item__check, .todo-item__info {
+  cursor: pointer;
+}
+.todo-item__info {
+  width: 100%;
+}
+.todo-item__content input[type=checkbox]:checked ~ label {
+  text-decoration: line-through;
+  color: rgba(0,0,0,0.3);
+}
+.todo-item__delete, .todo-item__edit {
+  padding: 0;
+  background-color: transparent;
+  border: transparent;
+  line-height: 1;
+  color: #666666;
+  outline: none;
+  opacity: 0;
+  transition: 0.5s;
+}
+.todo-item__edit {
+  margin-right: 15px;
+}
+@media screen and (max-width: 768px) {
+  .todo-item__edit, .todo-item__delete {
+    opacity: 1;
+  }
+}
+.todo-item:hover .todo-item__edit,
+.todo-item:hover .todo-item__delete {
+  opacity: 1;
+}
+.todo-item__edit:focus,
+.todo-item__delete:focus {
+  outline: none;
+}
+.todo-item__edit-content {
+  width: 100%;
+}
+.edit-done {
+  width: 110px;
+}
+@media screen and (max-width: 542px) {
+  .edit-done {
+    width: 130px;
+  }
+}
+.todo-action__options div, .todo-action__clear {
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.todo-action {
+  padding: 15px 25px;
+  border-top: 1px solid #e6e6e6;
+  font-size: 15px;
+  color: #919191;
+}
+.todo-action__options div:hover {
+  border: 1px solid rgba(133, 179, 169, 0.5);
+}
+.todo-action__options div.active {
+  border: 1px solid rgba(133, 179, 169, 0.8);
+}
+.todo-action__clear {
+  background: #eeeeee;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.todo-action__clear:hover {
+  background: #dddddd;
+  color: #434343;
+}
+.todo-action__save {
+  padding: 0;
+  font-size: 20px;
+  color: #aaaaaa;
+}
+.todo-action__save:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+.todo-action__save:hover {
+  color: #434343;
+}
+@media screen and (max-width: 768px) {
+  .todo-action {
+    flex-wrap: wrap;
+    padding: 5px 20px 10px 20px;
+  }
+  .todo-action div {
+    margin: 5px 0;
+  }
+}
+.edit-hide .todo-item__edit-content {
+  display: none;
+}
+.edit-show .todo-item__edit-content {
+  display: block;
+}
