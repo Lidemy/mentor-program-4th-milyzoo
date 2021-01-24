@@ -112,21 +112,21 @@
     margin: 0 auto
     width: 100%
   &__input
-      padding: 3px 5px
-      width: 70%
-      border: transparent
+    padding: 3px 5px
+    width: 70%
+    border: transparent
+    border-bottom: 1px solid $grey3
+    border-radius: 0
+    color: $color-primary
+    +breakpoints
+      width: 80%
+    &::placeholder
+      color: $grey3
+      @extend %transition
+    &:focus
       border-bottom: 1px solid $grey3
-      border-radius: 0
-      color: $color-primary
-      +breakpoints
-        width: 80%
       &::placeholder
-        color: $grey3
-        @extend %transition
-      &:focus
-        border-bottom: 1px solid $grey3
-        &::placeholder
-          color: $grey4
+        color: $grey4
   &__list
     margin-top: 40px
     li
