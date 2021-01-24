@@ -1,0 +1,59 @@
+/* ---------------------------------------- */
+/*  全域設定                                 */
+/* ---------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap")
+@import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp")
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html, body
+  height: 100%
+
+body
+  font-family: $font-family
+  font-weight: $font-weight-regular
+  color: $text-primary
+  line-height: $line-height-normal
+  letter-spacing: 0.5px
+  background-color: $background-main
+
+a
+  text-decoration: none
+  font-size: $font-size-normal
+  color: $text-primary
+  @extend %transition
+  &:hover
+    color: $text-secondary
+
+h1, h2, h3
+  margin: 0
+
+ul
+  list-style: none
+
+input,
+input[type="button"],
+input[type="submit"],
+input[type="file"],
+input[type="reset"],
+button,
+textarea,
+select
+  outline: none
+  line-height: $line-height-normal
+  letter-spacing: 1px
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+
+input[type="button"],
+input[type="submit"],
+input[type="file"],
+input[type="reset"],
+button
+  cursor: pointer
+
+input, textarea
+  resize: none

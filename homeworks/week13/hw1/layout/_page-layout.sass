@@ -1,0 +1,118 @@
+// ----------------------------------------
+//  共用或排版用 class
+//  |- 01 共用 class
+//  |- 02 icon & icon 排版
+//  |- 03 按鈕
+// ----------------------------------------
+
+// ----------------------------------------
+//  共用 class
+// ----------------------------------------
+.container
+  margin: 0 auto
+  width: 90%
+  max-width: 1280px
+  +breakpoints
+    padding: 0 40px
+    width: 100%
+.main
+  &-min-height
+    min-height: calc(100vh - 230px) // header 150px + footer 80px
+  &-background
+    @extend %margin-center
+    height: auto
+    @extend %background
+.title
+  &-admin
+    display: flex
+    align-items: center
+    margin: 0 auto 30px auto
+    font-size: $font-size-xl
+    font-weight: $font-weight-medium
+    color: $grey1
+    span
+      margin-right: 5px
+      font-size: 32px
+  &-main
+    +flexRow(initial, center)
+    margin-bottom: 30px
+    font-size: 24px
+    span
+      margin-right: 5px
+.paginator
+  +flexRow
+  margin-top: 40px
+  color: $grey3
+  p, a
+    display: flex
+  a
+    color: $grey2
+    &:hover
+      color: $grey1
+.error-message
+  margin: 10px 0
+  color: #c90000
+.text-center
+  justify-content: center
+  text-align: center
+// ----------------------------------------
+//  icon & icon 排版 
+// ----------------------------------------
+.icon
+  &-s
+    +iconSize(5px, $font-size-s)
+  &-m
+    +iconSize(3px, 18px)
+.article__actions
+  display: inline-block
+  align-self: flex-end
+  margin-bottom: 15px
+  +breakpoints
+    margin-bottom: 0
+// ----------------------------------------
+//  按鈕類
+// ----------------------------------------
+.btn
+  &__admin
+    display: inline-flex
+    align-items: center
+    margin: 0 5px
+    padding: 3px 10px
+    border: 1px solid $grey3
+    border-radius: 5px
+    background: transparent
+    color: $grey2
+    @extend %transition
+    &:hover
+      color: $grey1
+      border: 1px solid $grey2
+      background-color: $grey5
+  &__submit
+    padding: 10px 0
+    color: $white
+    background-color: $grey1
+    border-radius: 3px
+    @extend %transition
+    &:hover
+      background-color: rgba($grey1, 0.9)
+  &__edit-post
+    display: inline-block
+    margin-top: 20px
+    padding: 10px 40px
+    color: $white
+    background-color: $grey1
+    border: solid 1px transparent
+    border-radius: 3px
+    cursor: pointer
+    @extend %transition
+    &:hover
+      background-color: rgba($grey1, 0.9)
+  &-read-more
+    display: inline-block
+    margin-top: 20px
+    padding: 5px 0
+    border-bottom: dotted 1px $grey3
+    font-size: $font-size-xs
+    color: $grey3
+    &:hover
+      color: $grey2
