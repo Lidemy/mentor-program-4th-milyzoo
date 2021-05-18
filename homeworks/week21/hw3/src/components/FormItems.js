@@ -257,6 +257,7 @@ export default function FormItems() {
           ...formData,
           option: e.target.value,
         });
+        setIsNotChecked(false);
         break;
       case "source":
         setFormData({
@@ -273,8 +274,6 @@ export default function FormItems() {
       default:
         break;
     }
-
-    setIsNotChecked(false);
   };
 
   const handleSubmit = (e) => {
@@ -286,6 +285,7 @@ export default function FormItems() {
       !formData.name ||
       !formData.email ||
       !formData.phone ||
+      !formData.option ||
       !formData.source
     )
       return setIsEmptyMessage(true);
