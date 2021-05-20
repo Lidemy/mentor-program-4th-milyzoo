@@ -11,7 +11,7 @@ Call Stack 是追蹤函式執行的一種機制，假設有段程式碼是 `a` f
 瀏覽器另外提供的 API，例如：DOM、AJAX、`setTimeout()`，讓我們可以同時處理多項任務，而不會造成網頁阻塞。
 
 ### Task Queue（任務佇列）
-會接收來自 Web API 的任務，再由 Event Loop 機制來監控 Call Stack 裡面是否還有需要執行的項目，如果 Call Stack 裡沒有任務，就會將 Task Queue 裡面的任務拉進 Call Stack 並執行。
+當有非同步的操作（包含 Web API）時，會先放到 Task Queue，再由 Event Loop 機制來監控 Call Stack 裡面是否還有需要執行的項目，如果 Call Stack 裡沒有任務，就會將 Task Queue 裡面的任務拉進 Call Stack 並執行。
 
 ### Event Loop（事件循環）
 Javascript 是單執行緒（single-thread）的程式語言，簡單來說就是一次只能執行一件事情，如果安排很多要執行的任務，Javascript 就會讓這些任務排隊，並依序完成。
