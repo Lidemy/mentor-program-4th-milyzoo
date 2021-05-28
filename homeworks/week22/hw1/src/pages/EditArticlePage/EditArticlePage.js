@@ -40,7 +40,6 @@ export default function AddPostPage() {
     }
     updateArticle(id, articleTitle, articleContent).then((data) => {
       if (!data.id) return;
-      console.log(data.id);
       history.push(`/articles/${id}`);
     });
   };
