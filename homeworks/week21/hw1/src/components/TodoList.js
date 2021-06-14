@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import clearImg from "../images/clear.svg";
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import SingleTodoItem from "./TodoItem";
 
 const TodoListWrapper = styled.section`
@@ -125,7 +125,7 @@ export default function TodoList() {
     { id: 2, content: "未完成", isDone: false }, // 內建第二筆資料
   ]);
   const [value, setValue] = useState("");
-  const [filter, setFilter] = useState("all");
+  const [currentFilter, setCurrentFilter] = useState("all");
   let id = useRef(3); // 已經有內建 id: 2，所以初始值要從 3 開始
   let uncompleteCount = todos.filter((todo) => !todo.isDone).length;
 
@@ -141,7 +141,7 @@ export default function TodoList() {
     setValue(""); // 做完就清空 setValue
     id.current++;
   }
-  const handleButtonClick = (e) => SendTodoContent(e);
+  const handleButtonClick = () => SendTodoContent();
   const handleInputKeyDown = (e) => {
     if (e.keyCode === 13) SendTodoContent();
   };
@@ -168,11 +168,18 @@ export default function TodoList() {
     );
   };
 
-  const filterAllTodo = () => setFilter("all");
+  const filterAllTodo = () => setCurrentFilter("all");
 
-  const filterUncompeletedTodo = () => setFilter("uncomplete");
+  const filterUncompeletedTodo = () => setCurrentFilter("uncomplete");
 
-  const filterDoneTodo = () => setFilter("done");
+  const filterDoneTodo = () => setCurrentFilter("done");
+
+  const filterTodos = useMemo(() => {
+    return todos.filter((todo) => {
+      if (currentFilter === "all") return true;
+      return currentFilter === "done" ? todo.isDone : !todo.isDone;
+    });
+  }, [todos, currentFilter]);
 
   const clearDoneTodo = () =>
     setTodos(todos.filter((todo) => todo.isDone !== true));
@@ -180,16 +187,22 @@ export default function TodoList() {
   return (
     <TodoListWrapper>
       <FilterWrapper>
-        <FilterButton onClick={filterAllTodo} $isActive={filter === "all"}>
+        <FilterButton
+          onClick={filterAllTodo}
+          $isActive={currentFilter === "all"}
+        >
           全部
         </FilterButton>
         <FilterButton
           onClick={filterUncompeletedTodo}
-          $isActive={filter === "uncomplete"}
+          $isActive={currentFilter === "uncomplete"}
         >
           未完成
         </FilterButton>
-        <FilterButton onClick={filterDoneTodo} $isActive={filter === "done"}>
+        <FilterButton
+          onClick={filterDoneTodo}
+          $isActive={currentFilter === "done"}
+        >
           已完成
         </FilterButton>
       </FilterWrapper>
@@ -203,19 +216,14 @@ export default function TodoList() {
         </ClearButton>
       </TodoItemInfo>
       <TodoItemWrapper>
-        {todos
-          .filter((todo) => {
-            if (filter === "all") return todo;
-            return filter === "done" ? todo.isDone : !todo.isDone;
-          })
-          .map((todo) => (
-            <SingleTodoItem
-              key={todo.id}
-              todo={todo}
-              handleDeleteTodo={handleDeleteTodo}
-              handleToggleIsDone={handleToggleIsDone}
-            />
-          ))}
+        {filterTodos.map((todo) => (
+          <SingleTodoItem
+            key={todo.id}
+            todo={todo}
+            handleDeleteTodo={handleDeleteTodo}
+            handleToggleIsDone={handleToggleIsDone}
+          />
+        ))}
       </TodoItemWrapper>
       <TodoItemInputField>
         <TodoItemTextField
